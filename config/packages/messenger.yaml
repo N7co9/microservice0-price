@@ -1,0 +1,14 @@
+framework:
+  messenger:
+    transports:
+      async:
+        dsn: '%env(RABBITMQ_URL)%'
+        options:
+          exchange:
+            name: 'product-import-exchange'
+            type: 'direct'
+          queues:
+            price_microservice:
+              binding_keys: [ price_key ]
+    routing:
+      'App\Component\Message\Message': async
