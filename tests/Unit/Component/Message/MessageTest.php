@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Tests\Component\Message;
+namespace App\Tests\Unit\Component\Message;
 
 use App\Component\Message\Message;
 use PHPUnit\Framework\TestCase;

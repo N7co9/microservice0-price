@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Component\Import\Business\Model;
+namespace App\Tests\Unit\Component\Import\Business\Model;
 
 use App\Component\Import\Business\Model\Import;
 use App\Shared\DTO\ArticleDTO;
@@ -17,7 +17,7 @@ class ImportTest extends TestCase
     protected function setUp(): void
     {
         $this->import = new Import();
-        $this->testFilePath = sys_get_temp_dir() . '/test_import_' . uniqid() . '.xml';
+        $this->testFilePath = sys_get_temp_dir() . '/test_import_' . uniqid('', true) . '.xml';
     }
 
     public function testParse(): void
@@ -27,6 +27,8 @@ class ImportTest extends TestCase
 <products>
     <product id="product1">
         <attribute identificator="name">Product 1</attribute>
+        <attribute identificator="price" country="US">99.99</attribute>
+        <attribute identificator="price" country="DE">89.99</attribute>
         <article id="article1">
             <attribute identificator="color">Red</attribute>
             <articlePlacement>
@@ -49,7 +51,11 @@ XML;
 
         $product = $result[0];
         $this->assertEquals('product1', $product->product_id);
-        $this->assertEquals(['name' => 'Product 1'], $product->attributes);
+        $this->assertEquals([
+            'name' => 'Product 1',
+            'price_US' => '99.99',
+            'price_DE' => '89.99'
+        ], $product->attributes);
 
         $this->assertCount(1, $product->articles);
         $article = $product->articles[0];

@@ -76,3 +76,5 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+/coverage/
+coverage

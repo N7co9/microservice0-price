@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Tests\Component\Import\Business;
+namespace App\Tests\Unit\Component\Import\Business;
 
 use App\Component\Import\Business\ImportBusinessFacade;
 use App\Component\Import\Business\Model\Import;
-use App\Shared\DTO\ProductDTO;
 use App\Shared\DTO\ArticleDTO;
+use App\Shared\DTO\ProductDTO;
 use App\Shared\DTO\VariantDTO;
 use PHPUnit\Framework\TestCase;
 
